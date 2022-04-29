@@ -12,11 +12,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--white);
 }
 
 body {
   font-family: 'Oxygen', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
+  padding-top: 75px;
 }
 
 header {
@@ -24,8 +26,17 @@ header {
   justify-content: space-around;
   padding: 25px 0;
   background-color: var(--rich-black);
-  color: var(--white);
+  font-size: 1.2rem;
   font-weight: 700;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100vw;
+  border-bottom: 1px solid var(--columbia-blue);
+}
+
+header p {
+  color: var(--green);
 }
 
 ul {
@@ -36,16 +47,108 @@ ul {
 
 ul li a {
   text-decoration: none;
-  color: var(--white);
+  color: var(--green);
 }
 
 ul li a:hover {
-  color: var(--green);
+  color: var(--white);
 }
 
 #home {
   height: calc(100vh - 70px);
-  background: hsla(240, 3%, 7%, 1) url("./assets/bg_2.jpeg") no-repeat;
+  background: hsla(240, 3%, 7%, 1) url("./assets/bg_2.jpeg") no-repeat center;
   background-size: cover;
-  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.home-content {
+  width: 30vw;
+  background-color: hsla(258, 73%, 62%, 0.7);
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.home-content img {
+  border-radius: 100%;
+  width: 30%;
+}
+
+.home-content h1 {
+  padding: 5px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.home-content p {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.home-content svg {
+  margin: 25px 5px;
+  width: 35px;
+  height: 35px;
+  stroke: var(--green);
+}
+
+.home-content svg:hover {
+  stroke: var(--columbia-blue);
+}
+
+.home-content button {
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: var(--green);
+  border-radius: 15px;
+  border: none;
+  outline: none;
+}
+
+.home-content button:hover {
+  background-color: var(--columbia-blue);
+  color: var(--rich-black);
+}
+
+.seta {
+  position: absolute;
+  bottom: 45px;
+  stroke: var(--green);
+  width: 50px;
+  height: 50px;
+  animation: seta 4s linear 0s infinite normal forwards;
+}
+
+@keyframes seta {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateY(-8px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateY(8px);
+  }
+
+  80% {
+    transform: translateY(6.4px);
+  }
+
+  90% {
+    transform: translateY(-6.4px);
+  }
 }
