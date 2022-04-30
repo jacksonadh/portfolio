@@ -162,9 +162,8 @@ ul li a:hover {
 }
 
 #sobre .bg {
-  background: url("./assets/bg_2.jpeg") no-repeat center;
+  background: url("./assets/bg_3.png") no-repeat center;
   background-size: cover;
-  opacity: 0.8;
   position: absolute;
   z-index: -1;
   top: 0;
