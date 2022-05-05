@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700;800&display=swap');
 
 :root {
   --rich-black: #111112ff;
@@ -6,6 +6,7 @@
   --green: #04d361ff;
   --white: #fdfdffff;
   --columbia-blue: #c0d8e0ff;
+  font-size: 65.5%;
 }
 
 * {
@@ -17,16 +18,16 @@
 
 body {
   font-family: 'Oxygen', sans-serif;
-  font-size: 1rem;
-  padding-top: 75px;
+  font-size: 1.6rem;
+  padding-top: 7.5rem;
 }
 
 header {
   display: flex;
   justify-content: space-around;
-  padding: 25px 0;
+  padding: 2.5rem 0;
   background-color: var(--rich-black);
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   position: fixed;
   top: 0;
@@ -41,7 +42,7 @@ header p {
 
 ul {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   list-style: none;
 }
 
@@ -55,7 +56,7 @@ ul li a:hover {
 }
 
 #home {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 7rem);
   background: hsla(240, 3%, 7%, 1) url("./assets/bg_2.jpeg") no-repeat center;
   background-size: cover;
   display: flex;
@@ -69,8 +70,8 @@ ul li a:hover {
 .home-content {
   width: 30vw;
   background-color: hsla(258, 73%, 62%, 0.7);
-  padding: 25px;
-  border-radius: 10px;
+  padding: 2.5rem;
+  border-radius: 1rem;
 }
 
 .home-content img {
@@ -79,33 +80,33 @@ ul li a:hover {
 }
 
 .home-content h1 {
-  padding: 5px;
-  font-size: 2rem;
+  padding: 0.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
 }
 
 .home-content p {
-  padding: 5px;
-  font-size: 1.2rem;
+  padding: 0.5rem;
+  font-size: 1.4rem;
 }
 
-.home-content svg {
-  margin: 25px 5px;
-  width: 35px;
-  height: 35px;
-  stroke: var(--green);
+.home-content i {
+  margin: 2.5rem 0.5rem;
+  font-size: 3.5rem;
+  color: var(--green);
 }
 
-.home-content svg:hover {
+
+.home-content i:hover {
   stroke: var(--columbia-blue);
 }
 
 .home-content button {
-  padding: 15px;
+  padding: 1.5rem;
   font-size: 1rem;
   font-weight: 700;
   background-color: var(--green);
-  border-radius: 15px;
+  border-radius: 1.5rem;
   border: none;
   outline: none;
 }
@@ -115,12 +116,11 @@ ul li a:hover {
   color: var(--rich-black);
 }
 
-.seta {
+.fa {
   position: absolute;
-  bottom: 45px;
-  stroke: var(--green);
-  width: 50px;
-  height: 50px;
+  bottom: 4.5rem;
+  color: var(--green);
+  font-size: 5rem;
   animation: seta 4s linear 0s infinite normal forwards;
 }
 
@@ -180,16 +180,126 @@ ul li a:hover {
 }
 
 .container-sobre h2 {
-  padding: 5px;
+  padding: 0.5rem;
   font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
 }
 
-
 .container-sobre p {
-  padding: 5px;
+  padding: 0.5rem;
   font-size: 1.2rem;
   font-weight: 400;
   text-align: justify;
+}
+
+#formacao {
+  background: url("./assets/bg_3_b.png") no-repeat center;
+  background-size: cover;
+  height: 100vh;
+}
+
+#formacao .timeline .container .conteudo i {
+  margin: 2.5rem 0.5rem;
+  font-size: 3.5rem;
+  color: var(--green);
+}
+
+#formacao .timeline .container .conteudo h2 {
+  font-size: 1.8rem;
+  color: var(--rich-black);
+  font-weight: 800;
+}
+
+#formacao .timeline .container .conteudo p {
+  font-size: 1.6rem;
+  color: var(--rich-black);
+}
+
+#formacao .timeline {
+  position: relative;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+#formacao .timeline::after {
+  content: '';
+  position: absolute;
+  width: 0.6rem;
+  background-color: var(--green);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.container {
+  padding: 1rem 4rem;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  right: -17px;
+  background-color: var(--green);
+  border: 4px solid var(--medium-purple);
+  top: 1.5rem;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  left: 50%;
+  text-align: right;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid var(--columbia-blue);
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent var(--columbia-blue);
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid var(--columbia-blue);
+  border-width: 10px 10px 10px 0;
+  border-color: transparent var(--columbia-blue) transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.conteudo {
+  padding: 2rem 3rem;
+  background-color: var(--columbia-blue);
+  position: relative;
+  border-radius: 0.7rem;
 }
