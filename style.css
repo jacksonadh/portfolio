@@ -193,36 +193,46 @@ ul li a:hover {
   text-align: justify;
 }
 
-#formacao {
+#timeline {
   background: url("./assets/bg_3_b.png") no-repeat center;
   background-size: cover;
   height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
 }
 
-#formacao .timeline .container .conteudo i {
+#timeline aside {
+  position: relative;
+  top: 10rem;
+
+  max-width: 55rem;
+  max-height: 80vh;
+
+  background-color: var(--columbia-blue);
+  border-radius: 0.7rem;
+}
+
+#timeline .container .conteudo i {
   margin: 2.5rem 0.5rem;
   font-size: 3.5rem;
   color: var(--green);
 }
 
-#formacao .timeline .container .conteudo h2 {
+#timeline .container .conteudo h2 {
   font-size: 1.8rem;
   color: var(--rich-black);
   font-weight: 800;
 }
 
-#formacao .timeline .container .conteudo p {
+#timeline .container .conteudo p {
   font-size: 1.6rem;
   color: var(--rich-black);
 }
 
-#formacao .timeline {
-  position: relative;
-  max-width: 120rem;
-  margin: 0 auto;
-}
-
-#formacao .timeline::after {
+#timeline::after {
   content: '';
   position: absolute;
   width: 0.6rem;
@@ -237,7 +247,6 @@ ul li a:hover {
   padding: 1rem 4rem;
   position: relative;
   background-color: inherit;
-  width: 50%;
 }
 
 /* The circles on the timeline */
@@ -259,8 +268,7 @@ ul li a:hover {
 }
 
 .right {
-  left: 50%;
-  text-align: right;
+  /* text-align: right;*/
 }
 
 /* Add arrows to the left container (pointing right) */
