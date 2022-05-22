@@ -16,6 +16,10 @@
   color: var(--white);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Oxygen', sans-serif;
   font-size: 1.8rem;
@@ -162,8 +166,7 @@ ul li a:hover {
 }
 
 #sobre .bg {
-  background: url("./assets/bg_3.png") no-repeat center;
-  background-size: cover;
+  background: linear-gradient(135deg, var(--rich-black) 0%, var(--medium-purple) 45%);
   position: absolute;
   z-index: -1;
   top: 0;
@@ -194,8 +197,7 @@ ul li a:hover {
 }
 
 #timeline {
-  background: url("./assets/bg_3_b.png") no-repeat center;
-  background-size: cover;
+  background: linear-gradient(315deg, var(--rich-black) 0%, var(--medium-purple) 45%);
 }
 
 #timeline .title {
