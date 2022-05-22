@@ -18,7 +18,7 @@
 
 body {
   font-family: 'Oxygen', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   padding-top: 7.5rem;
 }
 
@@ -27,7 +27,7 @@ header {
   justify-content: space-around;
   padding: 2.5rem 0;
   background-color: var(--rich-black);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   position: fixed;
   top: 0;
@@ -81,13 +81,13 @@ ul li a:hover {
 
 .home-content h1 {
   padding: 0.5rem;
-  font-size: 2.8rem;
+  font-size: 3.6rem;
   font-weight: 700;
 }
 
 .home-content p {
   padding: 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .home-content i {
@@ -181,14 +181,14 @@ ul li a:hover {
 
 .container-sobre h2 {
   padding: 0.5rem;
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 2.5rem;
 }
 
 .container-sobre p {
   padding: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   text-align: justify;
 }
@@ -196,6 +196,11 @@ ul li a:hover {
 #timeline {
   background: url("./assets/bg_3_b.png") no-repeat center;
   background-size: cover;
+}
+
+#timeline .title {
+  padding-top: 10rem;
+  text-align: center;
 }
 
 .timeline-container {
@@ -208,7 +213,7 @@ ul li a:hover {
 }
 
 .container {
-  padding: 1rem 4rem;
+  padding: 4rem 4rem;
 }
 
 .conteudo {
@@ -220,7 +225,7 @@ ul li a:hover {
   top: 10rem;
 
   max-width: 55rem;
-  max-height: 80vh;
+  max-height: 55vh;
 
   background-color: var(--columbia-blue);
   border-radius: 0.7rem;
@@ -239,12 +244,12 @@ ul li a:hover {
 }
 
 .timeline-container .container .conteudo h2 {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   color: var(--rich-black);
   font-weight: 800;
 }
 
 .timeline-container .container .conteudo p {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--rich-black);
 }
