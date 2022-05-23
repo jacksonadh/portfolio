@@ -18,6 +18,7 @@
         <li> <a href="#home">Home</a> </li>
         <li> <a href="#sobre">Sobre</a> </li>
         <li> <a href="#timeline">Experiência</a> </li>
+        <li> <a href="#jobs">Trabalhos Recentes</a> </li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -119,10 +120,47 @@
       </aside>
     </div>
   </section>
+  <section id="jobs">
+    <h1>Hello, Jobs</h1>
+    <nav>
+      <ul>
+        <li>
+          <input type="radio" id="tab1" class="rd-tab" name="tabs" checked />
+          <label for="tab1" class="tab-label">Todos</label>
+          <div class="tab-content">
+            <div class="card-content">
+              <figure>
+                <img src="https://developer.mozilla.org/static/img/favicon144.png" alt="Uma imagem impressionante">
+                <figcaption>Legenda para a imagem impressionante</figcaption>
+              </figure>
+              <img src="" alt>
+              <h2>{props.name}</h2>
+              <a href={props.linkToRepo} target="_blank" rel="noreferrer">{props.fullName}</a>
+              </article>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <input type="radio" id="tab2" class="rd-tab" name="tabs" />
+          <label for="tab2" class="tab-label">HTML e CSS</label>
+          <div class="tab-content">
+
+          </div>
+        </li>
+        <li>
+          <input type="radio" id="tab3" class="rd-tab" name="tabs" />
+          <label for="tab3" class="tab-label">React JS</label>
+          <div class="tab-content">
+
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </section>
   <section id="skills">
     <h1>Hello, skills</h1>
   </section>
-
   <section id="contato">
     <h1>Hello, contato</h1>
   </section>

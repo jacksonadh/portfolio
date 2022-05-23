@@ -44,18 +44,18 @@ header p {
   color: var(--green);
 }
 
-ul {
+header ul {
   display: flex;
   gap: 1rem;
   list-style: none;
 }
 
-ul li a {
+header ul li a {
   text-decoration: none;
   color: var(--green);
 }
 
-ul li a:hover {
+header ul li a:hover {
   color: var(--white);
 }
 
@@ -100,9 +100,8 @@ ul li a:hover {
   color: var(--green);
 }
 
-
 .home-content i:hover {
-  stroke: var(--columbia-blue);
+  color: var(--columbia-blue);
 }
 
 .home-content button {
@@ -254,4 +253,60 @@ ul li a:hover {
 .timeline-container .container .conteudo p {
   font-size: 1.8rem;
   color: var(--rich-black);
+}
+
+#jobs {
+  background-color: var(--rich-black);
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#jobs nav {
+  position: relative;
+  top: 6rem;
+}
+
+#jobs nav ul {
+  list-style: none;
+}
+
+#jobs nav ul li {
+  float: left;
+}
+
+#jobs nav ul li .tab-label {
+  display: block;
+  width: 50rem;
+
+  padding: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+#jobs nav ul li .rd-tab {
+  display: none;
+  position: absolute;
+}
+
+#jobs nav ul li .rd-tab:checked~label {
+  font-weight: 700;
+  color: var(--medium-purple);
+  border-bottom: solid 5px var(--medium-purple);
+}
+
+#jobs nav ul li .tab-content {
+  display: none;
+  position: absolute;
+  height: auto;
+  padding: 2.5rem;
+  left: 0;
+}
+
+#jobs nav ul li .rd-tab:checked~.tab-content {
+  display: flex;
+  flex-wrap: wrap;
 }
