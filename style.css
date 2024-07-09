@@ -61,7 +61,7 @@ ul li a:hover {
 
 #home {
   height: calc(100vh - 7rem);
-  background: hsla(240, 3%, 7%, 1) url("./assets/bg_2.jpeg") no-repeat center;
+  background: #282828;
   background-size: cover;
   display: flex;
   flex-direction: column;
