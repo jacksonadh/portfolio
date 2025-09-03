@@ -161,7 +161,7 @@
   color: #ffffff;
 }
 
-#timeline .title {
+.title {
   text-align: center;
   font-size: 3rem;
   margin-bottom: 3rem;
@@ -222,16 +222,10 @@
   color: #010736;
 }
 
-/* Skills Section */
 #skills {
   background-color: #f9f9f9;
   color: #010736;
   text-align: center;
-}
-
-#skills h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
 }
 
 .skills-container {
@@ -288,7 +282,7 @@
     flex-direction: column;
   }
 
-  #timeline .title {
+  .title {
     font-size: 1.7rem;
   }
 
