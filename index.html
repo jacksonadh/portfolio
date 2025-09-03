@@ -1,131 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jackson Almeida | Dev Front-end</title>
-  <script src="https://kit.fontawesome.com/a12a8030d5.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-  <header>
-    <p>Jackson Almeida</p>
-    <nav>
-      <ul>
-        <li> <a href="#home">Home</a> </li>
-        <li> <a href="#sobre">Sobre</a> </li>
-        <li> <a href="#timeline">Experiência</a> </li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
-  <section id="home">
-    <div class="home-content">
-      <img src="./assets/profile.jpeg" alt="Foto de perfil de Jackson Almeida">
-      <h1>Jackson Almeida</h1>
-      <p>sou desenvolvedor front-end</p>
-      <div>
-        <a href="https://github.com/jacksonadh" target="_blank"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/jah7" target="_blank"><i class="fa-brands fa-linkedin"></i></i></a>
-      </div>
-      <button>Download CV</button>
-    </div>
-    <i class="fa fa-solid fa-arrow-down"></i>
-  </section>
-
-  <section id="sobre">
-    <div class="bg"></div>
-    <!--  <img src="./assets/sobre.png"
-      alt="Na imagem um jovem negro usando óculos está sentado olhando pra frente e sorrindo">-->
-    <div class="container-sobre">
-      <h2>Precisa de desenvolvedor front-end?</h2>
-      <h2>Eu posso te ajudar!</h2>
-      <p>
-        Olá, meu nome é Jackson Almeida, estou em busca de novas oportunidades no mercado de tecnologia e procuro na
-        área de desenvolvimento front-end uma chance para aprimorar meus conhecimentos e carreira em T.I, suporte e
-        gestão de equipe.
-        Durante a minha carreira cresci dentro da empresa, trazendo projetos que visam uma melhor experiência do usuário
-        e redução de custos.
-        Também Cursei o curso de Desenvolvimento Fullstack na gama academy no projeto Hiring Coders #2 durante 3 meses.
-        Desenvolvi dois projetos que podem ser conferidos no meu github, uma landing page de black friday e uma loja
-        virtual utilizando o VTEX IO.
-      </p>
-    </div>
-  </section>
-
-  <section id="timeline">
-    <h2 class="title">Experiência</h2>
-    <div class="timeline-container">
-      <aside class="formacao">
-        <div class="container left">
-          <div class="conteudo">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div class="informacao">
-              <h2>2021 - 2024</h2>
-              <p>Estácio</p>
-              <p>Tecnólogo em Análise e Desenvolvimento de Sistemas</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/a12a8030d5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Jackson Almeida</title>
+  </head>
+  <body>
+    <main>
+      <navbar id="navbar">
+        <a class="navbar-link">Jackson Almeida</a>
+        <div class="container-links">
+          <a href="#welcome-section" class="navbar-link">About</a>
+          <a href="#projects" class="navbar-link">Work</a>
+          <a href="#contact" class="navbar-link">Contact</a>
+        </div>
+      </navbar>
+      <section id="welcome-section">
+        <h1>Hi, I'm Jackson Almeida.</h1>
+        <p>a fullstack developer</p>
+      </section>
+      <section id="projects">
+        <h2>These are some of my projects</h2>
+        <div class="container-projects">
+          <a
+            href="https://github.com/jacksonadh/Alura7DaysOfCodeHtml"
+            class="project-card"
+          >
+            <img
+              src="https://github.com/jacksonadh/Alura7DaysOfCodeHtml/raw/master/img/img%20para%20readme/Desktop.png"
+              class="image-project"
+            />
+            <div class="project-tile">
+              <p>&lt; 7 Days of code Alura /&gt;</p>
             </div>
+          </a>
+        </div>
+      </section>
+      <section id="timeline">
+        <h2 class="title">Experience</h2>
+        <div class="timeline-container">
+          <aside class="education">
+            <div class="container left">
+              <div class="content">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div class="info">
+                  <h2>2021 - 2024</h2>
+                  <p>Estácio</p>
+                  <p>Technologist in Systems Analysis and Development</p>
+                </div>
+              </div>
+            </div>
+            <div class="container left">
+              <div class="content">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div class="info">
+                  <h2>2022 - 2022</h2>
+                  <p>Gama Academy</p>
+                  <p>
+                    Hiring Coders#3 - Fullstack Development and Digital Commerce
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="container left">
+              <div class="content">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div class="info">
+                  <h2>2017 - 2017</h2>
+                  <p>Prime Cursos</p>
+                  <p>Computer Technician</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <aside class="experience">
+            <div class="container right">
+              <div class="content">
+                <i class="fa-solid fa-briefcase"></i>
+                <div class="info">
+                  <h2>2014 - 2022</h2>
+                  <p>IT Coordinator</p>
+                  <p>Clínica Sermec Serviços Médicos LTDA</p>
+                </div>
+              </div>
+            </div>
+            <div class="container right">
+              <div class="content">
+                <i class="fa-solid fa-briefcase"></i>
+                <div class="info">
+                  <h2>2012 - 2013</h2>
+                  <p>Computer Instructor</p>
+                  <p>Mega Curso</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Minhas Skills</h2>
+        <div class="skills-container">
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+              alt="HTML"
+            />
+            <p>HTML</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+              alt="CSS"
+            />
+            <p>CSS</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+              alt="JavaScript"
+            />
+            <p>JavaScript</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+              alt="React"
+            />
+            <p>React</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+              alt="TypeScript"
+            />
+            <p>TypeScript</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+              alt="Node.js"
+            />
+            <p>Node.js</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+              alt="Next.js"
+            />
+            <p>Next.js</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg"
+              alt="SQL"
+            />
+            <p>SQL</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+              alt="Git"
+            />
+            <p>Git</p>
+          </div>
+          <div class="skill-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              alt="GitHub"
+            />
+            <p>GitHub</p>
           </div>
         </div>
-        <div class="container left">
-          <div class="conteudo">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div class="informacao">
-              <h2>2022 - 2022</h2>
-              <p>Gama Academy</p>
-              <p>Hiring Coders#3 - Desenvolvimento Fullstack e Digital Commerce</p>
-            </div>
+      </section>
+
+      <section id="contact">
+        <h2>Let's work together...</h2>
+        <p>How do you take your coffee?</p>
+        <div class="container-contact">
+          <div>
+            <a
+              href="https://github.com/jacksonadh"
+              id="profile-link"
+              target="_blank"
+            >
+              <svg
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                version="1.1"
+                width="32"
+                data-view-component="true"
+                class="octicon octicon-mark-github v-align-middle"
+                stroke="#fff"
+                fill="#fff"
+              >
+                <path
+                  d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"
+                ></path>
+              </svg>
+              <span>Check out my GitHub</span>
+            </a>
+          </div>
+          <div>
+            <a
+              href="https://www.linkedin.com/in/jah7"
+              id="linkedin-link"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="#fff"
+                stroke="#fff"
+                class="octicon octicon-mark-linkedin v-align-middle"
+              >
+                <path
+                  d="M20.451 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.137 1.445-2.137 2.939v5.667h-3.553V9h3.413v1.561h.048c.476-.9 1.637-1.852 3.367-1.852 3.599 0 4.265 2.369 4.265 5.452v6.291zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.116 20.452H3.557V9h3.559v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+                />
+              </svg>
+              <span>Connect with me on LinkedIn</span>
+            </a>
           </div>
         </div>
-        <div class="container left">
-          <div class="conteudo">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div class="informacao">
-              <h2>2017 - 2017</h2>
-              <p>Prime Cursos</p>
-              <p>Técnico em informática</p>
-            </div>
-
-          </div>
-        </div>
-      </aside>
-      <aside class="experiencia">
-        <div class="container right">
-          <div class="conteudo">
-            <i class="fa-solid fa-briefcase"></i>
-            <div class="informacao">
-              <h2>2014 - 2022</h2>
-              <p>Coordenador de TI</p>
-              <p>Clínica Sermec Serviços Médicos LTDA</p>
-            </div>
-
-          </div>
-        </div>
-        <div class="container right">
-          <div class="conteudo">
-            <i class="fa-solid fa-briefcase"></i>
-            <div class="informacao">
-              <h2>2012 - 2013</h2>
-              <p>Instrutor de Informática</p>
-              <p>Mega Curso</p>
-            </div>
-
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-  <section id="skills">
-    <h1>Hello, skills</h1>
-  </section>
-
-  <section id="contato">
-    <h1>Hello, contato</h1>
-  </section>
-</body>
-
+      </section>
+    </main>
+  </body>
 </html>
