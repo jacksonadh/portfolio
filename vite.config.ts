@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ mode }) => {
   // Carrega variáveis de ambiente baseado no mode (development, production)
   const env = loadEnv(mode, process.cwd(), '')
-  
+
   return {
     plugins: [react()],
     // Para Vercel: usar '/' | Para GitHub Pages: usar '/portfolio/'
