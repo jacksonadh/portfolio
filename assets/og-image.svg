@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad)"/>
+  
+  <!-- Logo symbol -->
+  <text x="600" y="200" font-family="monospace" font-size="80" font-weight="bold" fill="#39ff14" text-anchor="middle">&lt;/&gt;</text>
+  
+  <!-- Title -->
+  <text x="600" y="320" font-family="system-ui, sans-serif" font-size="72" font-weight="bold" fill="#f5f5f5" text-anchor="middle">Código Primordial</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="400" font-family="system-ui, sans-serif" font-size="32" fill="#737373" text-anchor="middle">Desenvolvimento Web em React, TypeScript e VTEX</text>
+  
+  <!-- CTA -->
+  <rect x="450" y="460" width="300" height="60" rx="12" fill="#39ff14"/>
+  <text x="600" y="500" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#0a0a0a" text-anchor="middle">Solicitar Orçamento</text>
+</svg>
