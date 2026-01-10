@@ -189,27 +189,36 @@ Formulário completo com:
 
 ## 🌐 Deploy
 
-### GitHub Pages
+### Vercel (Recomendado)
 
-O projeto está configurado para deploy no GitHub Pages:
+O projeto está configurado para deploy na Vercel:
+
+1. Conecte o repositório no [Vercel Dashboard](https://vercel.com/new)
+2. Configure as variáveis de ambiente (opcional):
+   - `VITE_BASE_URL=/`
+   - `VITE_SITE_URL=https://seu-dominio.vercel.app`
+3. Deploy automático a cada push na branch main
+
+**URL de produção:** `https://codigoprimordial.vercel.app/`
+
+### Variáveis de Ambiente
+
+Copie `.env.example` para `.env` e ajuste:
 
 ```bash
-# Build e deploy
-npm run deploy
+# Base URL (/ para Vercel, /portfolio/ para GitHub Pages)
+VITE_BASE_URL=/
+
+# URL do site em produção
+VITE_SITE_URL=https://codigoprimordial.vercel.app
 ```
 
-**URL de produção:** `https://jacksonadh.github.io/portfolio/`
+### Domínio Personalizado
 
-### Configuração do Base Path
-
-O `vite.config.ts` já está configurado com o base path correto:
-
-```typescript
-export default defineConfig({
-  plugins: [react()],
-  base: '/portfolio/',
-})
-```
+Para usar domínio próprio (ex: codigoprimordial.com):
+1. Adicione o domínio no Vercel Dashboard
+2. Atualize `VITE_SITE_URL` no `.env`
+3. Atualize URLs em `index.html`, `sitemap.xml` e `robots.txt`
 
 ---
 

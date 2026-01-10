@@ -17,6 +17,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
+## [1.0.2] - 2026-01-10
+
+### Changed - Deploy para Vercel
+- **Migra deploy** de GitHub Pages para Vercel
+- Atualiza `vite.config.ts` para usar variáveis de ambiente
+- Cria `vercel.json` com configurações de build e headers de segurança
+- Remove dependência `gh-pages` do package.json
+- Atualiza base URL de `/portfolio/` para `/`
+- Cria `.env` e `.env.example` para configuração de ambiente
+
+### Added
+- Arquivo `vercel.json` com rewrites para SPA e cache de assets
+- Headers de segurança (X-Content-Type-Options, X-Frame-Options, X-XSS-Protection)
+
+### Updated
+- URLs em `index.html`, `sitemap.xml` e `robots.txt` para domínio Vercel
+- Documentação de deploy no README.md
+
+---
+
 ## [1.0.1] - 2026-01-10
 
 ### Added - SEO Optimization

@@ -16,7 +16,7 @@ export function Hero() {
         {/* Circuit pattern background */}
         <div 
           className="absolute inset-0 opacity-30 bg-cover bg-center"
-          style={{ backgroundImage: "url('/portfolio/assets/bg_3.png')" }}
+          style={{ backgroundImage: "url('/assets/bg_3.png')" }}
         />
         
         {/* Animated gradient orbs */}

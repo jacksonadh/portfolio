@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jacksonadh.github.io/portfolio/</loc>
+    <loc>https://codigoprimordial.vercel.app/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://jacksonadh.github.io/portfolio/#servicos</loc>
+    <loc>https://codigoprimordial.vercel.app/#servicos</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://jacksonadh.github.io/portfolio/#portfolio</loc>
+    <loc>https://codigoprimordial.vercel.app/#portfolio</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jacksonadh.github.io/portfolio/#sobre</loc>
+    <loc>https://codigoprimordial.vercel.app/#sobre</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://jacksonadh.github.io/portfolio/#processo</loc>
+    <loc>https://codigoprimordial.vercel.app/#processo</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://jacksonadh.github.io/portfolio/#contato</loc>
+    <loc>https://codigoprimordial.vercel.app/#contato</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

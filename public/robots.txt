@@ -1,11 +1,11 @@
 # Robots.txt para Código Primordial
-# https://jacksonadh.github.io/portfolio/
+# https://codigoprimordial.vercel.app/
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jacksonadh.github.io/portfolio/sitemap.xml
+Sitemap: https://codigoprimordial.vercel.app/sitemap.xml
 
-# Crawl-delay (opcional, para não sobrecarregar)
+# Crawl-delay (opcional)
 Crawl-delay: 1
