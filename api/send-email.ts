@@ -226,7 +226,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Send email
   const { data, error } = await resend.emails.send({
-   from: 'Código Primordial <onboarding@resend.dev>',
+   from: 'Código Primordial <contato@codigoprimordial.com>',
    to: ['contato@codigoprimordial.com'],
    replyTo: email,
    subject: `Nova Solicitação: ${projectType} - ${name}`,
