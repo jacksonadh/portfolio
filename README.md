@@ -41,6 +41,8 @@ Site institucional da agência **Código Primordial**, transformado a partir de 
 | Vite | 6.0.5 | Build tool rápida e moderna |
 | Tailwind CSS | 3.4.17 | Framework CSS utilitário |
 | Lucide React | 0.468.0 | Biblioteca de ícones |
+| Resend | 4.x | API de envio de e-mails transacionais |
+| Vercel Analytics | 1.6.1 | Métricas de visitantes |
 
 ---
 
@@ -179,11 +181,12 @@ Timeline em 5 etapas:
 5. **Entrega** (Contínuo) - Lançamento e suporte
 
 ### 6. Contato/Orçamento
-Formulário completo com:
-- Nome, E-mail, Empresa
+Formulário completo com envio de e-mail via Resend:
+- Nome, E-mail, Telefone (com máscara), Empresa
 - Tipo de Projeto (dropdown)
 - Orçamento Estimado (faixas de R$ 5k a R$ 50k+)
 - Mensagem
+- Estados visuais: loading, erro, sucesso
 
 ---
 
@@ -211,7 +214,14 @@ VITE_BASE_URL=/
 
 # URL do site em produção
 VITE_SITE_URL=https://codigoprimordial.vercel.app
+
+# API Key do Resend para envio de e-mails
+# Obtenha em: https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxxx
 ```
+
+**⚠️ Importante:** Configure `RESEND_API_KEY` no painel da Vercel em:
+`Settings → Environment Variables`
 
 ### Domínio Personalizado
 
@@ -237,16 +247,58 @@ Para usar domínio próprio (ex: codigoprimordial.com):
 
 ---
 
+## 📧 Envio de E-mails (Resend)
+
+O formulário de contato envia e-mails para `contato@codigoprimordial.com` usando a API do Resend via Vercel Serverless Functions.
+
+### Arquitetura
+
+```
+Cliente (React) → POST /api/send-email → Vercel Function → Resend API → E-mail
+```
+
+### Configuração
+
+1. **Obtenha uma API Key** em [resend.com/api-keys](https://resend.com/api-keys)
+2. **Configure na Vercel:**
+   - Acesse `Settings → Environment Variables`
+   - Adicione `RESEND_API_KEY` com sua chave
+
+### Domínio de E-mail Personalizado
+
+Por padrão, e-mails são enviados de `onboarding@resend.dev`. Para usar seu domínio:
+
+1. Acesse [resend.com/domains](https://resend.com/domains)
+2. Adicione e verifique seu domínio
+3. Atualize o remetente em `api/send-email.ts`:
+
+```typescript
+from: 'Código Primordial <contato@codigoprimordial.com>',
+```
+
+### Template de E-mail
+
+O template HTML inclui:
+- Branding com cores da marca (verde neon, roxo, fundo escuro)
+- Dados do cliente formatados
+- Detalhes do projeto (tipo, orçamento)
+- Mensagem completa
+- Botão de resposta rápida
+- Footer com copyright
+
+---
+
 ## 🔮 Próximos Passos
 
-- [ ] Integrar formulário com EmailJS, Formspree ou API própria
+- [x] ~~Integrar formulário com EmailJS, Formspree ou API própria~~ → Resend
+- [x] ~~Implementar analytics~~ → Vercel Analytics
 - [ ] Adicionar blog com estudos de caso detalhados
 - [ ] Criar versão em inglês (internacionalização)
-- [ ] Implementar analytics (Google Analytics, Plausible)
 - [ ] Adicionar animações avançadas com Framer Motion
 - [ ] Implementar modo claro/escuro (theme toggle)
 - [ ] Adicionar mais projetos ao portfólio
 - [ ] Criar imagem OG em PNG (substituir SVG placeholder)
+- [ ] Verificar domínio no Resend para e-mail personalizado
 
 ---
 

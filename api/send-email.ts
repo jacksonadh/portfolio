@@ -4,17 +4,17 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface ContactFormData {
-  name: string
-  email: string
-  phone: string
-  company: string
-  projectType: string
-  budget: string
-  message: string
+ name: string
+ email: string
+ phone: string
+ company: string
+ projectType: string
+ budget: string
+ message: string
 }
 
 function generateEmailTemplate(data: ContactFormData): string {
-  return `
+ return `
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -49,13 +49,13 @@ function generateEmailTemplate(data: ContactFormData): string {
                 🎉 Nova Solicitação de Orçamento
               </h1>
               <p style="margin: 8px 0 0; font-size: 14px; color: #737373;">
-                Recebido em ${new Date().toLocaleDateString('pt-BR', { 
-                  day: '2-digit', 
-                  month: 'long', 
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
+                Recebido em ${new Date().toLocaleDateString('pt-BR', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit'
+ })}
               </p>
             </td>
           </tr>
@@ -191,64 +191,64 @@ function generateEmailTemplate(data: ContactFormData): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+ // CORS headers
+ res.setHeader('Access-Control-Allow-Credentials', 'true')
+ res.setHeader('Access-Control-Allow-Origin', '*')
+ res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+ res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-  // Handle preflight
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end()
+ // Handle preflight
+ if (req.method === 'OPTIONS') {
+  return res.status(200).end()
+ }
+
+ // Only allow POST
+ if (req.method !== 'POST') {
+  return res.status(405).json({ error: 'Method not allowed' })
+ }
+
+ try {
+  const { name, email, phone, company, projectType, budget, message } = req.body as ContactFormData
+
+  // Validation
+  if (!name || !email || !projectType || !budget || !message) {
+   return res.status(400).json({
+    error: 'Campos obrigatórios não preenchidos',
+    required: ['name', 'email', 'projectType', 'budget', 'message']
+   })
   }
 
-  // Only allow POST
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+   return res.status(400).json({ error: 'E-mail inválido' })
   }
 
-  try {
-    const { name, email, phone, company, projectType, budget, message } = req.body as ContactFormData
+  // Send email
+  const { data, error } = await resend.emails.send({
+   from: 'Código Primordial <onboarding@resend.dev>',
+   to: ['contato@codigoprimordial.com'],
+   replyTo: email,
+   subject: `Nova Solicitação: ${projectType} - ${name}`,
+   html: generateEmailTemplate({ name, email, phone, company, projectType, budget, message }),
+  })
 
-    // Validation
-    if (!name || !email || !projectType || !budget || !message) {
-      return res.status(400).json({ 
-        error: 'Campos obrigatórios não preenchidos',
-        required: ['name', 'email', 'projectType', 'budget', 'message']
-      })
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: 'E-mail inválido' })
-    }
-
-    // Send email
-    const { data, error } = await resend.emails.send({
-      from: 'Código Primordial <onboarding@resend.dev>',
-      to: ['contato@codigoprimordial.com'],
-      replyTo: email,
-      subject: `Nova Solicitação: ${projectType} - ${name}`,
-      html: generateEmailTemplate({ name, email, phone, company, projectType, budget, message }),
-    })
-
-    if (error) {
-      console.error('Resend error:', error)
-      return res.status(500).json({ error: 'Erro ao enviar e-mail', details: error.message })
-    }
-
-    return res.status(200).json({ 
-      success: true, 
-      message: 'E-mail enviado com sucesso!',
-      id: data?.id 
-    })
-
-  } catch (error) {
-    console.error('Server error:', error)
-    return res.status(500).json({ 
-      error: 'Erro interno do servidor',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    })
+  if (error) {
+   console.error('Resend error:', error)
+   return res.status(500).json({ error: 'Erro ao enviar e-mail', details: error.message })
   }
+
+  return res.status(200).json({
+   success: true,
+   message: 'E-mail enviado com sucesso!',
+   id: data?.id
+  })
+
+ } catch (error) {
+  console.error('Server error:', error)
+  return res.status(500).json({
+   error: 'Erro interno do servidor',
+   details: error instanceof Error ? error.message : 'Unknown error'
+  })
+ }
 }

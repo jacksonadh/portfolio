@@ -8,12 +8,53 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Planned
-- Integração do formulário de contato com EmailJS ou API própria
 - Blog com estudos de caso detalhados
 - Versão em inglês (i18n)
-- Google Analytics / Plausible analytics
 - Animações avançadas com Framer Motion
 - Modo claro/escuro (dark/light theme toggle)
+
+---
+
+## [1.1.0] - 2026-01-10
+
+### Added - Integração de E-mail com Resend
+- **Envio de e-mail** funcional no formulário de contato
+- **Vercel Serverless Function** (`api/send-email.ts`) para processamento seguro
+- **Template HTML profissional** de e-mail com:
+  - Branding completo (cores, logo, tipografia)
+  - Seções organizadas: dados do cliente, detalhes do projeto, mensagem
+  - Botão de resposta rápida
+  - Design responsivo para clientes de e-mail
+- **Campo de telefone** com máscara brasileira `(11) 99999-9999`
+- **Estados de UI** no formulário:
+  - Loading com spinner animado
+  - Mensagem de erro com ícone
+  - Tela de sucesso com confirmação
+- **Validações** no servidor:
+  - Campos obrigatórios
+  - Formato de e-mail
+  - Headers CORS
+
+### Changed
+- Formulário de contato refatorado com estados de submissão
+- Campos desabilitados durante envio
+- Botão com feedback visual de loading
+
+### Technical
+- Dependência `resend` adicionada
+- Variável `RESEND_API_KEY` documentada em `.env.example`
+- Arquitetura: `Cliente → POST /api/send-email → Resend API → contato@codigoprimordial.com`
+
+---
+
+## [1.0.3] - 2026-01-10
+
+### Added
+- **Vercel Analytics** integrado para métricas de visitantes
+- Componente `<Analytics />` renderizado no App.tsx
+
+### Technical
+- Dependência `@vercel/analytics` adicionada
 
 ---
 
