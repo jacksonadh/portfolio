@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react'
-import { Send, Mail, Clock, CheckCircle } from 'lucide-react'
+import { Send, Mail, Clock, CheckCircle, AlertCircle, Loader2, Phone } from 'lucide-react'
 import { SectionTitle } from '../common/SectionTitle'
 import { Button } from '../common/Button'
 
@@ -20,31 +20,94 @@ const budgetRanges = [
   'A definir',
 ]
 
+type FormStatus = 'idle' | 'loading' | 'success' | 'error'
+
+// Máscara de telefone brasileiro
+function formatPhone(value: string): string {
+  const numbers = value.replace(/\D/g, '')
+  
+  if (numbers.length <= 2) {
+    return numbers.length ? `(${numbers}` : ''
+  }
+  if (numbers.length <= 7) {
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`
+  }
+  if (numbers.length <= 10) {
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 6)}-${numbers.slice(6)}`
+  }
+  return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`
+}
+
 export function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     projectType: '',
     budget: '',
     message: '',
   })
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    // Simular envio - em produção, integrar com backend/email service
-    console.log('Form data:', formData)
-    setIsSubmitted(true)
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao enviar mensagem')
+      }
+
+      setStatus('success')
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        projectType: '',
+        budget: '',
+        message: '',
+      })
+    } catch (error) {
+      setStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Erro ao enviar mensagem. Tente novamente.')
+    }
   }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    
+    // Aplica máscara de telefone
+    if (name === 'phone') {
+      setFormData({ ...formData, [name]: formatPhone(value) })
+    } else {
+      setFormData({ ...formData, [name]: value })
+    }
   }
 
-  if (isSubmitted) {
+  const resetForm = () => {
+    setStatus('idle')
+    setErrorMessage('')
+  }
+
+  // Success state
+  if (status === 'success') {
     return (
       <section id="contato" className="py-20 md:py-32 bg-surface-dark">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -56,9 +119,9 @@ export function Contact() {
               Mensagem Enviada!
             </h3>
             <p className="text-text-muted mb-6">
-              Obrigado pelo contato! Retornaremos em até 24 horas úteis.
+              Obrigado pelo contato! Recebemos sua solicitação e retornaremos em até 24 horas úteis.
             </p>
-            <Button onClick={() => setIsSubmitted(false)} variant="outline">
+            <Button onClick={resetForm} variant="outline">
               Enviar nova mensagem
             </Button>
           </div>
@@ -132,6 +195,14 @@ export function Contact() {
           {/* Right - Form */}
           <div className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Error message */}
+              {status === 'error' && (
+                <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                  <p className="text-red-400 text-sm">{errorMessage}</p>
+                </div>
+              )}
+
               <div className="grid sm:grid-cols-2 gap-6">
                 {/* Name */}
                 <div>
@@ -143,9 +214,10 @@ export function Contact() {
                     id="name"
                     name="name"
                     required
+                    disabled={status === 'loading'}
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
+                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Seu nome"
                   />
                 </div>
@@ -160,28 +232,53 @@ export function Contact() {
                     id="email"
                     name="email"
                     required
+                    disabled={status === 'loading'}
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
+                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="seu@email.com"
                   />
                 </div>
               </div>
 
-              {/* Company */}
-              <div>
-                <label htmlFor="company" className="block text-text text-sm font-medium mb-2">
-                  Empresa
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder="Nome da sua empresa (opcional)"
-                />
+              <div className="grid sm:grid-cols-2 gap-6">
+                {/* Phone */}
+                <div>
+                  <label htmlFor="phone" className="block text-text text-sm font-medium mb-2">
+                    <span className="flex items-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      Telefone / WhatsApp
+                    </span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    disabled={status === 'loading'}
+                    value={formData.phone}
+                    onChange={handleChange}
+                    maxLength={16}
+                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    placeholder="(11) 99999-9999"
+                  />
+                </div>
+
+                {/* Company */}
+                <div>
+                  <label htmlFor="company" className="block text-text text-sm font-medium mb-2">
+                    Empresa
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    disabled={status === 'loading'}
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    placeholder="Nome da sua empresa (opcional)"
+                  />
+                </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6">
@@ -194,9 +291,10 @@ export function Contact() {
                     id="projectType"
                     name="projectType"
                     required
+                    disabled={status === 'loading'}
                     value={formData.projectType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="" disabled>Selecione...</option>
                     {projectTypes.map((type) => (
@@ -214,9 +312,10 @@ export function Contact() {
                     id="budget"
                     name="budget"
                     required
+                    disabled={status === 'loading'}
                     value={formData.budget}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="" disabled>Selecione...</option>
                     {budgetRanges.map((range) => (
@@ -235,10 +334,11 @@ export function Contact() {
                   id="message"
                   name="message"
                   required
+                  disabled={status === 'loading'}
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Descreva seu projeto, objetivos e expectativas..."
                 />
               </div>
@@ -248,9 +348,23 @@ export function Contact() {
                 <p className="text-text-muted text-sm">
                   * Campos obrigatórios
                 </p>
-                <Button type="submit" size="lg">
-                  Enviar Mensagem
-                  <Send size={18} />
+                <Button 
+                  type="submit" 
+                  size="lg"
+                  disabled={status === 'loading'}
+                  className={status === 'loading' ? 'opacity-70 cursor-not-allowed' : ''}
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      Enviar Mensagem
+                      <Send size={18} />
+                    </>
+                  )}
                 </Button>
               </div>
             </form>
