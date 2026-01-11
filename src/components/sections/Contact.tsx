@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import { Send, Mail, Clock, CheckCircle, AlertCircle, Loader2, Phone } from 'lucide-react'
 import { SectionTitle } from '../common/SectionTitle'
 import { Button } from '../common/Button'
@@ -21,6 +21,8 @@ const budgetRanges = [
 ]
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
+
+const STORAGE_KEY = 'contact-form-draft'
 
 // Máscara de telefone brasileiro
 function formatPhone(value: string): string {
@@ -51,6 +53,18 @@ export function Contact() {
     message: '',
   })
 
+  // Carregar dados salvos do localStorage ao montar
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      try {
+        setFormData(JSON.parse(saved))
+      } catch {
+        localStorage.removeItem(STORAGE_KEY)
+      }
+    }
+  }, [])
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setStatus('loading')
@@ -72,7 +86,8 @@ export function Contact() {
       }
 
       setStatus('success')
-      // Reset form
+      // Limpa dados salvos e reseta form
+      localStorage.removeItem(STORAGE_KEY)
       setFormData({
         name: '',
         email: '',
@@ -94,11 +109,13 @@ export function Contact() {
     const { name, value } = e.target
     
     // Aplica máscara de telefone
-    if (name === 'phone') {
-      setFormData({ ...formData, [name]: formatPhone(value) })
-    } else {
-      setFormData({ ...formData, [name]: value })
-    }
+    const newValue = name === 'phone' ? formatPhone(value) : value
+    const updatedData = { ...formData, [name]: newValue }
+    
+    setFormData(updatedData)
+    
+    // Salva no localStorage para não perder dados ao atualizar
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData))
   }
 
   const resetForm = () => {
