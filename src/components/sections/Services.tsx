@@ -7,26 +7,30 @@ const services = [
   {
     icon: Globe,
     title: 'Landing Pages e Sites Institucionais',
-    description: 'Sites rápidos, responsivos e otimizados para conversão. Ideal para apresentar sua empresa, captar leads e gerar credibilidade online.',
-    benefits: ['SEO otimizado', 'Design responsivo', 'Alta performance'],
+    description: 'Sua empresa precisa ser encontrada e gerar confiança em segundos. Criamos sites que carregam rápido, aparecem no Google e convertem visitantes em leads qualificados.',
+    benefits: ['Conversão de leads', 'SEO que rankeia', 'Carregamento rápido'],
+    cta: 'Criar minha landing page',
   },
   {
     icon: Code2,
     title: 'Aplicações Web em React/TypeScript',
-    description: 'Sistemas e dashboards customizados com código de qualidade. Interfaces modernas que escalam junto com seu negócio.',
-    benefits: ['Código tipado', 'Arquitetura escalável', 'Manutenção fácil'],
+    description: 'Dashboards, painéis administrativos e sistemas sob medida. Interfaces que sua equipe realmente usa, com código que não vira legado em 6 meses.',
+    benefits: ['Escala sem retrabalho', 'Interface intuitiva', 'Código limpo'],
+    cta: 'Desenvolver minha aplicação',
   },
   {
     icon: ShoppingCart,
     title: 'Lojas VTEX IO e E-commerce',
-    description: 'Lojas virtuais completas na plataforma VTEX ou soluções customizadas. Foco em UX e checkout otimizado para aumentar suas vendas.',
-    benefits: ['Checkout otimizado', 'Integrações nativas', 'Gestão simplificada'],
+    description: 'Checkout que não abandona carrinho. Lojas VTEX ou customizadas com foco em redução de atrito e aumento de ticket médio. Venda mais com menos cliques.',
+    benefits: ['Menos abandono', 'Mais conversão', 'Integração com ERP'],
+    cta: 'Escalar meu e-commerce',
   },
   {
     icon: Wrench,
     title: 'Consultoria e Manutenção Front-end',
-    description: 'Suporte contínuo, correção de bugs e melhorias em projetos existentes. Mantemos seu site atualizado e funcionando perfeitamente.',
-    benefits: ['Suporte dedicado', 'Atualizações', 'Monitoramento'],
+    description: 'Seu site já existe mas está lento, quebrado ou defasado? Fazemos diagnóstico, correção e evolução sem precisar recomeçar do zero.',
+    benefits: ['Correção rápida', 'Evolução contínua', 'Sem refazer tudo'],
+    cta: 'Solicitar diagnóstico',
   },
 ]
 
@@ -35,9 +39,9 @@ export function Services() {
     <section id="servicos" className="py-20 md:py-32 bg-surface-dark" aria-labelledby="servicos-titulo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle 
-          subtitle="Soluções completas de desenvolvimento web para impulsionar seu negócio digital"
+          subtitle="Do primeiro clique até a conversão. Soluções que geram receita."
         >
-          Serviços
+          O que entregamos
         </SectionTitle>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
@@ -85,7 +89,7 @@ export function Services() {
                     size="sm"
                     className="group/btn"
                   >
-                    Quero este serviço
+                    {service.cta}
                     <ArrowRight 
                       size={16} 
                       className="group-hover/btn:translate-x-1 transition-transform" 
