@@ -7,6 +7,12 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+### Added
+- **Google Analytics 4** integrado para análise avançada de tráfego
+  - Tracking ID: `G-PE2WZFVPJ9`
+  - Script adicionado no `<head>` do `index.html`
+  - Complementa o Vercel Analytics com métricas detalhadas
+
 ### Planned
 - Blog com estudos de caso detalhados
 - Versão em inglês (i18n)

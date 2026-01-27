@@ -43,6 +43,7 @@ Site institucional da agência **Código Primordial**, transformado a partir de 
 | Lucide React | 0.468.0 | Biblioteca de ícones |
 | Resend | 4.x | API de envio de e-mails transacionais |
 | Vercel Analytics | 1.6.1 | Métricas de visitantes |
+| Google Analytics 4 | - | Análise avançada de tráfego e conversões |
 
 ---
 
