@@ -1,37 +1,36 @@
-import { Code2, Zap, Users, Award } from 'lucide-react'
+import { Code2, Zap, Users, Award, ArrowRight } from 'lucide-react'
 import { SectionTitle } from '../common/SectionTitle'
 
 const techStack = [
   { name: 'React', color: 'text-cyan-400' },
   { name: 'TypeScript', color: 'text-blue-400' },
-  { name: 'VTEX IO', color: 'text-pink-400' },
-  { name: 'Tailwind CSS', color: 'text-teal-400' },
-  { name: 'Node.js', color: 'text-green-400' },
   { name: 'Next.js', color: 'text-white' },
-  { name: 'JavaScript', color: 'text-yellow-400' },
+  { name: 'VTEX IO', color: 'text-pink-400' },
+  { name: 'Node.js', color: 'text-green-400' },
   { name: 'GraphQL', color: 'text-pink-500' },
+  { name: 'Tailwind CSS', color: 'text-teal-400' },
 ]
 
 const values = [
   {
     icon: Code2,
     title: 'Código de Qualidade',
-    description: 'Escrevemos código limpo, tipado e bem documentado que facilita manutenção e evolução.',
+    description: 'Código tipado, testável e documentado. Fácil de manter, evoluir e escalar sem dor de cabeça.',
   },
   {
     icon: Zap,
     title: 'Performance',
-    description: 'Sites rápidos que carregam em segundos e oferecem experiência fluida aos usuários.',
+    description: 'Sites que carregam em menos de 3 segundos. Melhor experiência, melhor SEO, mais conversão.',
   },
   {
     icon: Users,
     title: 'Foco no Cliente',
-    description: 'Entendemos seu negócio para entregar soluções que realmente geram resultados.',
+    description: 'Entendemos seu negócio antes de escrever uma linha de código. Soluções que resolvem problemas reais.',
   },
   {
     icon: Award,
     title: 'Compromisso',
-    description: 'Prazos respeitados e comunicação transparente do início ao fim do projeto.',
+    description: 'Prazos cumpridos e comunicação direta. Você sabe o status do projeto a qualquer momento.',
   },
 ]
 
@@ -40,7 +39,7 @@ export function About() {
     <section id="sobre" className="py-20 md:py-32 bg-surface-dark" aria-labelledby="sobre-nos-titulo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle 
-          subtitle="Conheça a agência por trás do código"
+          subtitle="Resultados sólidos com tecnologia de ponta"
         >
           Sobre Nós
         </SectionTitle>
@@ -49,32 +48,35 @@ export function About() {
           {/* Left - Content */}
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-text mb-6">
-              Transformando ideias em{' '}
-              <span className="text-primary">experiências digitais</span>
+              Seu projeto merece{' '}
+              <span className="text-primary">código que gera resultados</span>
             </h3>
             
             <div className="space-y-4 text-text-muted leading-relaxed">
               <p>
-                A <strong className="text-text">Código Primordial</strong> é um estúdio de 
-                desenvolvimento web fundado por <strong className="text-text">Jackson Almeida</strong>, 
-                desenvolvedor front-end com mais de 5 anos de experiência no mercado.
+                Desenvolvemos aplicações web, e-commerces e sistemas que funcionam. 
+                Sem gambiarras, sem código legado, sem surpresas. Nossa especialidade 
+                é transformar demandas complexas em soluções rápidas, escaláveis e 
+                prontas para crescer junto com seu negócio.
               </p>
               <p>
-                Nossa especialidade é criar soluções web modernas utilizando as melhores 
-                tecnologias do mercado: React, TypeScript, VTEX IO e todo o ecossistema 
-                JavaScript. Já trabalhamos com empresas como <strong className="text-text">Amara Nzero Brasil</strong> e 
-                diversos projetos de e-commerce e aplicações corporativas.
+                Trabalhamos com empresas que valorizam qualidade técnica e entregas 
+                no prazo. Cada projeto recebe atenção dedicada, com comunicação clara 
+                e processos bem definidos. Do briefing ao deploy, você acompanha 
+                cada etapa e sabe exatamente o que está sendo construído.
               </p>
               <p>
-                Acreditamos que cada projeto é único e merece atenção personalizada. 
-                Por isso, trabalhamos de forma próxima aos nossos clientes, garantindo 
-                que cada linha de código entregue valor real ao negócio.
+                A <strong className="text-text">Código Primordial</strong> é liderada 
+                por <strong className="text-text">Jackson Almeida</strong>, desenvolvedor 
+                front-end com mais de 5 anos de experiência em projetos para empresas 
+                como <strong className="text-text">Amara Nzero Brasil</strong>, além de 
+                e-commerces e aplicações corporativas de alta demanda.
               </p>
             </div>
 
             {/* Tech Stack */}
             <div className="mt-8">
-              <p className="text-sm text-text-muted mb-3 font-medium">Tecnologias que dominamos:</p>
+              <p className="text-sm text-text-muted mb-3 font-medium">Stack de desenvolvimento:</p>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech) => (
                   <span
@@ -110,6 +112,20 @@ export function About() {
               )
             })}
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 text-center lg:text-left">
+          <p className="text-text-muted mb-4">
+            Pronto para começar seu projeto com uma equipe que entrega?
+          </p>
+          <a 
+            href="#contato"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary-400 font-semibold transition-colors"
+          >
+            Solicitar orçamento
+            <ArrowRight size={16} />
+          </a>
         </div>
       </div>
     </section>
