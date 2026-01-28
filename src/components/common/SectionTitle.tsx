@@ -19,7 +19,6 @@ export function SectionTitle({
     right: 'text-right',
   }
 
-  // Generate ID from children for aria-labelledby
   const sectionId = typeof children === 'string' 
     ? `${children.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-')}-titulo`
     : undefined

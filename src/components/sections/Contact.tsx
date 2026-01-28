@@ -1,9 +1,8 @@
 import { useState, useEffect, FormEvent, useMemo } from 'react'
-import { Send, Mail, Clock, CheckCircle, AlertCircle, Loader2, Phone, User } from 'lucide-react'
+import { Send, Mail, CheckCircle, AlertCircle, Loader2, Phone, User } from 'lucide-react'
 import { SectionTitle } from '../common/SectionTitle'
 import { Button } from '../common/Button'
 
-// Tipos de projeto com value e label para melhor qualificação
 const projectTypes = [
   { value: 'site', label: 'Site institucional ou portfólio' },
   { value: 'landing', label: 'Landing page (campanha ou lançamento)' },
@@ -14,7 +13,6 @@ const projectTypes = [
   { value: 'outro', label: 'Outro (descreva na mensagem)' },
 ]
 
-// Faixas de orçamento com linguagem acolhedora
 const budgetRanges = [
   { value: 'ate-5k', label: 'Até R$ 5.000' },
   { value: '5k-15k', label: 'R$ 5.000 a R$ 15.000' },
@@ -24,7 +22,6 @@ const budgetRanges = [
   { value: 'definir', label: 'Preciso de ajuda para estimar' },
 ]
 
-// Placeholders dinâmicos por tipo de projeto (briefing guiado)
 const messagePlaceholders: Record<string, string> = {
   site: `Descreva sua empresa e o objetivo do site.
 - Qual o público-alvo?
@@ -71,7 +68,6 @@ type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 const STORAGE_KEY = 'contact-form-draft'
 
-// Máscara de telefone brasileiro
 function formatPhone(value: string): string {
   const numbers = value.replace(/\D/g, '')
   
@@ -100,12 +96,10 @@ export function Contact() {
     message: '',
   })
 
-  // Placeholder dinâmico baseado no tipo de projeto selecionado
   const currentPlaceholder = useMemo(() => {
     return messagePlaceholders[formData.projectType] || messagePlaceholders.default
   }, [formData.projectType])
 
-  // Carregar dados salvos do localStorage ao montar
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (saved) {
@@ -123,7 +117,6 @@ export function Contact() {
     setErrorMessage('')
 
     try {
-      // Converte o value do projectType para o label antes de enviar
       const selectedProjectType = projectTypes.find(t => t.value === formData.projectType)
       const selectedBudget = budgetRanges.find(b => b.value === formData.budget)
 
@@ -146,7 +139,6 @@ export function Contact() {
       }
 
       setStatus('success')
-      // Limpa dados salvos e reseta form
       localStorage.removeItem(STORAGE_KEY)
       setFormData({
         name: '',
@@ -167,14 +159,10 @@ export function Contact() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
-    
-    // Aplica máscara de telefone
     const newValue = name === 'phone' ? formatPhone(value) : value
     const updatedData = { ...formData, [name]: newValue }
     
     setFormData(updatedData)
-    
-    // Salva no localStorage para não perder dados ao atualizar
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData))
   }
 
@@ -183,7 +171,6 @@ export function Contact() {
     setErrorMessage('')
   }
 
-  // Success state
   if (status === 'success') {
     return (
       <section id="contato" className="py-20 md:py-32 bg-surface-dark">
@@ -217,7 +204,6 @@ export function Contact() {
         </SectionTitle>
 
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Left - Info */}
           <div className="lg:col-span-2 space-y-8">
             <div>
               <h3 className="text-xl font-semibold text-text mb-4">
@@ -229,7 +215,6 @@ export function Contact() {
               </p>
             </div>
 
-            {/* Contact info */}
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -257,7 +242,6 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Social proof */}
             <div className="p-6 bg-surface rounded-xl border border-surface-light">
               <p className="text-text-muted text-sm italic">
                 "Consegui explicar minha ideia mesmo sem saber nada de tecnologia. 
@@ -269,10 +253,8 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right - Form */}
           <div className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Error message */}
               {status === 'error' && (
                 <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3">
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
@@ -281,7 +263,6 @@ export function Contact() {
               )}
 
               <div className="grid sm:grid-cols-2 gap-6">
-                {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-text text-sm font-medium mb-2">
                     Seu nome *
@@ -299,7 +280,6 @@ export function Contact() {
                   />
                 </div>
 
-                {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-text text-sm font-medium mb-2">
                     E-mail para contato *
@@ -319,7 +299,6 @@ export function Contact() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6">
-                {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-text text-sm font-medium mb-2">
                     <span className="flex items-center gap-2">
@@ -340,7 +319,6 @@ export function Contact() {
                   />
                 </div>
 
-                {/* Company */}
                 <div>
                   <label htmlFor="company" className="block text-text text-sm font-medium mb-2">
                     Empresa ou projeto
@@ -359,7 +337,6 @@ export function Contact() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6">
-                {/* Project Type */}
                 <div>
                   <label htmlFor="projectType" className="block text-text text-sm font-medium mb-2">
                     O que você precisa? *
@@ -380,7 +357,6 @@ export function Contact() {
                   </select>
                 </div>
 
-                {/* Budget */}
                 <div>
                   <label htmlFor="budget" className="block text-text text-sm font-medium mb-2">
                     Investimento previsto *
@@ -402,7 +378,6 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Message */}
               <div>
                 <label htmlFor="message" className="block text-text text-sm font-medium mb-2">
                   Conte mais sobre o projeto *
@@ -423,7 +398,6 @@ export function Contact() {
                 </p>
               </div>
 
-              {/* Submit */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <p className="text-text-muted text-sm">
                   * Campos obrigatórios. Suas informações estão seguras.

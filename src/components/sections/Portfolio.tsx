@@ -48,7 +48,6 @@ export function Portfolio() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => (
             <Card key={project.title} className="group overflow-hidden" glow>
-              {/* Image */}
               <div className="relative -mx-6 -mt-6 mb-6 h-48 bg-surface-light overflow-hidden">
                 {project.image ? (
                   <img
@@ -62,8 +61,6 @@ export function Portfolio() {
                     <span className="text-4xl font-mono text-primary/50">&lt;/&gt;</span>
                   </div>
                 )}
-                
-                {/* Overlay with links */}
                 <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   {project.liveUrl && (
                     <a
@@ -90,7 +87,6 @@ export function Portfolio() {
                 </div>
               </div>
 
-              {/* Content */}
               <div>
                 <span className="text-secondary text-sm font-medium">
                   {project.client}
@@ -102,7 +98,6 @@ export function Portfolio() {
                   {project.description}
                 </p>
 
-                {/* Metrics */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.metrics.map((metric) => (
                     <span
@@ -114,7 +109,6 @@ export function Portfolio() {
                   ))}
                 </div>
 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-surface-light">
                   {project.tags.map((tag) => (
                     <span
@@ -130,7 +124,6 @@ export function Portfolio() {
           ))}
         </div>
 
-        {/* CTA */}
         <div className="text-center mt-12">
           <p className="text-text-muted mb-4">
             Quer ver mais projetos ou discutir sua ideia?

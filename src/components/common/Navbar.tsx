@@ -35,7 +35,6 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
           <a href="#home" className="flex items-center gap-2 group">
             <span className="text-primary font-mono text-2xl font-bold group-hover:text-glow transition-all">
               &lt;/&gt;
@@ -45,7 +44,6 @@ export function Navbar() {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
@@ -58,14 +56,12 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:block">
             <Button href="#contato" size="sm">
               Solicitar Orçamento
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 text-text hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -75,7 +71,6 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-surface/95 backdrop-blur-md border-t border-surface-light animate-slide-down">
             <div className="py-4 space-y-1">

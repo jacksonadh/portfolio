@@ -42,9 +42,7 @@ const steps = [
 export function Process() {
   return (
     <section id="processo" className="py-20 md:py-32 bg-background relative overflow-hidden" aria-labelledby="processo-de-trabalho-titulo">
-      {/* Background decoration */}
       <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionTitle 
           subtitle="Cada etapa clara. Sem surpresas. Você acompanha tudo."
@@ -52,11 +50,8 @@ export function Process() {
           Do briefing à entrega
         </SectionTitle>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Vertical line (mobile) / Horizontal line (desktop) */}
           <div className="absolute left-8 md:left-0 md:top-[60px] w-px md:w-full h-full md:h-px bg-surface-light" />
-          
           <div className="grid md:grid-cols-5 gap-8 md:gap-4">
             {steps.map((step) => {
               const Icon = step.icon
@@ -65,7 +60,6 @@ export function Process() {
                   key={step.number}
                   className="relative pl-20 md:pl-0 md:text-center group"
                 >
-                  {/* Step number and icon */}
                   <div className="absolute left-0 md:relative md:left-auto flex flex-col items-center">
                     <div className="relative z-10 w-16 h-16 bg-surface border-2 border-surface-light rounded-2xl flex items-center justify-center group-hover:border-primary/50 group-hover:bg-surface-light transition-all duration-300">
                       <Icon className="w-7 h-7 text-primary" />
@@ -75,7 +69,6 @@ export function Process() {
                     </span>
                   </div>
 
-                  {/* Content */}
                   <div className="md:mt-6">
                     <h3 className="text-lg font-semibold text-text mb-2 group-hover:text-primary transition-colors">
                       {step.title}
@@ -93,7 +86,6 @@ export function Process() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="text-center mt-16 p-8 bg-surface rounded-2xl border border-surface-light">
           <p className="text-text-muted mb-4">
             Sem compromisso. O briefing é gratuito e você já sai com clareza sobre seu projeto.

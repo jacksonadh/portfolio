@@ -45,7 +45,6 @@ export function About() {
         </SectionTitle>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left - Content */}
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-text mb-6">
               Seu projeto merece{' '}
@@ -74,7 +73,6 @@ export function About() {
               </p>
             </div>
 
-            {/* Tech Stack */}
             <div className="mt-8">
               <p className="text-sm text-text-muted mb-3 font-medium">Stack de desenvolvimento:</p>
               <div className="flex flex-wrap gap-2">
@@ -90,7 +88,6 @@ export function About() {
             </div>
           </div>
 
-          {/* Right - Values */}
           <div className="grid sm:grid-cols-2 gap-6">
             {values.map((value) => {
               const Icon = value.icon
@@ -114,7 +111,6 @@ export function About() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="mt-12 text-center lg:text-left">
           <p className="text-text-muted mb-4">
             Pronto para começar seu projeto com uma equipe que entrega?

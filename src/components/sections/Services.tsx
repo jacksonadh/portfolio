@@ -70,7 +70,6 @@ export function Services() {
                   {service.description}
                 </CardDescription>
 
-                {/* Benefits */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {service.benefits.map((benefit) => (
                     <span

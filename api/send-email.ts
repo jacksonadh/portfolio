@@ -191,18 +191,15 @@ function generateEmailTemplate(data: ContactFormData): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
- // CORS headers
  res.setHeader('Access-Control-Allow-Credentials', 'true')
  res.setHeader('Access-Control-Allow-Origin', '*')
  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
- // Handle preflight
  if (req.method === 'OPTIONS') {
   return res.status(200).end()
  }
 
- // Only allow POST
  if (req.method !== 'POST') {
   return res.status(405).json({ error: 'Method not allowed' })
  }
@@ -210,7 +207,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
  try {
   const { name, email, phone, company, projectType, budget, message } = req.body as ContactFormData
 
-  // Validation
   if (!name || !email || !projectType || !budget || !message) {
    return res.status(400).json({
     error: 'Campos obrigatórios não preenchidos',
@@ -218,13 +214,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
    })
   }
 
-  // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(email)) {
    return res.status(400).json({ error: 'E-mail inválido' })
   }
 
-  // Send email
   const { data, error } = await resend.emails.send({
    from: 'Código Primordial <contato@codigoprimordial.com>',
    to: ['contato@codigoprimordial.com'],

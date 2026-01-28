@@ -7,7 +7,6 @@ export function Footer() {
     <footer className="bg-surface py-12 border-t border-surface-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
           <div className="flex items-center gap-2">
             <span className="text-primary font-mono text-2xl font-bold">
               &lt;/&gt;
@@ -17,7 +16,6 @@ export function Footer() {
             </span>
           </div>
 
-          {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/jacksonadh"
@@ -46,7 +44,6 @@ export function Footer() {
             </a>
           </div>
 
-          {/* Copyright */}
           <p className="text-text-muted text-sm">
             © {currentYear} Código Primordial. Todos os direitos reservados.
           </p>
