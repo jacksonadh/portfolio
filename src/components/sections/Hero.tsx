@@ -30,7 +30,7 @@ export function Hero() {
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface/50 backdrop-blur-sm rounded-full border border-primary/30 mb-8 animate-fade-in">
           <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
           <span className="text-text-muted text-sm font-medium">
-            Estúdio de Desenvolvimento Web
+            Agência especializada em React, VTEX e e-commerce
           </span>
         </div>
 
@@ -39,12 +39,12 @@ export function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text mb-6 animate-slide-up"
           style={{ animationDelay: '0.1s' }}
         >
-          Aplicando o{' '}
+          Sites e aplicações que{' '}
           <span className="text-primary text-glow font-mono">
-            Código Primordial
-          </span>
+            vendem
+          </span>.
           <br />
-          ao seu produto digital
+          Código que escala.
         </h1>
 
         {/* Subheadline */}
@@ -52,8 +52,8 @@ export function Hero() {
           className="text-lg sm:text-xl md:text-2xl text-text-muted max-w-3xl mx-auto mb-10 animate-slide-up"
           style={{ animationDelay: '0.2s' }}
         >
-          Desenvolvemos aplicações web modernas, lojas e-commerce e experiências 
-          digitais que <span className="text-secondary">convertem visitantes em clientes</span>.
+          Criamos landing pages, sistemas em React e lojas VTEX para empresas 
+          que precisam de <span className="text-secondary">performance, conversão e código confiável</span>.
         </p>
 
         {/* CTA Buttons */}
@@ -62,11 +62,11 @@ export function Hero() {
           style={{ animationDelay: '0.3s' }}
         >
           <Button href="#contato" size="lg">
-            Solicitar Orçamento
+            Solicitar proposta gratuita
             <ArrowRight size={20} />
           </Button>
           <Button href="#servicos" variant="outline" size="lg">
-            Ver Serviços
+            Ver o que entregamos
           </Button>
         </div>
 
@@ -77,15 +77,15 @@ export function Hero() {
         >
           <div>
             <div className="text-3xl md:text-4xl font-bold text-primary font-mono">5+</div>
-            <div className="text-text-muted text-sm mt-1">Anos de Experiência</div>
+            <div className="text-text-muted text-sm mt-1">anos no mercado</div>
           </div>
           <div>
             <div className="text-3xl md:text-4xl font-bold text-primary font-mono">50+</div>
-            <div className="text-text-muted text-sm mt-1">Projetos Entregues</div>
+            <div className="text-text-muted text-sm mt-1">projetos entregues</div>
           </div>
           <div>
             <div className="text-3xl md:text-4xl font-bold text-primary font-mono">100%</div>
-            <div className="text-text-muted text-sm mt-1">Clientes Satisfeitos</div>
+            <div className="text-text-muted text-sm mt-1">foco em resultado</div>
           </div>
         </div>
       </div>
