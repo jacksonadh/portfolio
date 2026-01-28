@@ -6,35 +6,35 @@ const steps = [
     number: '01',
     icon: MessageSquare,
     title: 'Briefing',
-    description: 'Entendemos seu negócio, objetivos e necessidades. Uma conversa inicial para alinhar expectativas e definir o escopo do projeto.',
+    description: 'Você conta o que precisa. Nós escutamos, fazemos as perguntas certas e alinhamos expectativas desde o primeiro dia. Zero retrabalho por falta de clareza.',
     duration: '1-2 dias',
   },
   {
     number: '02',
     icon: FileText,
     title: 'Proposta',
-    description: 'Elaboramos uma proposta detalhada com escopo, cronograma, tecnologias recomendadas e investimento necessário.',
+    description: 'Você recebe um documento claro com escopo, prazo, tecnologias e investimento. Sem letras miúdas. Tudo transparente antes de começar.',
     duration: '2-3 dias',
   },
   {
     number: '03',
     icon: Palette,
     title: 'Design & Protótipo',
-    description: 'Criamos wireframes e protótipos interativos para validação visual antes de iniciar o desenvolvimento.',
+    description: 'Antes de escrever uma linha de código, você visualiza e aprova o design. Ajustes são feitos aqui, quando custam menos.',
     duration: '1-2 semanas',
   },
   {
     number: '04',
     icon: Code2,
     title: 'Desenvolvimento',
-    description: 'Codificamos sua solução com as melhores práticas, código limpo e entregas parciais para acompanhamento.',
+    description: 'Entregas parciais para você acompanhar o progresso em tempo real. Código limpo, testado e documentado. Sem surpresas na reta final.',
     duration: '2-8 semanas',
   },
   {
     number: '05',
     icon: Rocket,
     title: 'Entrega & Suporte',
-    description: 'Lançamento em produção, treinamento e suporte contínuo para garantir que tudo funcione perfeitamente.',
+    description: 'Seu projeto vai ao ar com acompanhamento. Treinamento incluso e suporte contínuo para ajustes e evolução.',
     duration: 'Contínuo',
   },
 ]
@@ -47,9 +47,9 @@ export function Process() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionTitle 
-          subtitle="Um processo estruturado que garante transparência e resultados"
+          subtitle="Cada etapa clara. Sem surpresas. Você acompanha tudo."
         >
-          Processo de Trabalho
+          Do briefing à entrega
         </SectionTitle>
 
         {/* Timeline */}
@@ -96,13 +96,13 @@ export function Process() {
         {/* CTA */}
         <div className="text-center mt-16 p-8 bg-surface rounded-2xl border border-surface-light">
           <p className="text-text-muted mb-4">
-            Pronto para começar seu projeto?
+            Sem compromisso. O briefing é gratuito e você já sai com clareza sobre seu projeto.
           </p>
           <a 
             href="#contato"
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-background font-semibold rounded-xl hover:bg-primary-400 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
           >
-            Iniciar Briefing
+            Agendar briefing gratuito
             <MessageSquare size={18} />
           </a>
         </div>
