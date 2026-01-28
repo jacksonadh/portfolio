@@ -1,24 +1,71 @@
-import { useState, useEffect, FormEvent } from 'react'
-import { Send, Mail, Clock, CheckCircle, AlertCircle, Loader2, Phone } from 'lucide-react'
+import { useState, useEffect, FormEvent, useMemo } from 'react'
+import { Send, Mail, Clock, CheckCircle, AlertCircle, Loader2, Phone, User } from 'lucide-react'
 import { SectionTitle } from '../common/SectionTitle'
 import { Button } from '../common/Button'
 
+// Tipos de projeto com value e label para melhor qualificação
 const projectTypes = [
-  'Landing Page / Site Institucional',
-  'Aplicação Web (React/TypeScript)',
-  'E-commerce / Loja VTEX',
-  'Consultoria / Manutenção',
-  'Outro',
+  { value: 'site', label: 'Site institucional ou portfólio' },
+  { value: 'landing', label: 'Landing page (campanha ou lançamento)' },
+  { value: 'ecommerce', label: 'Loja virtual / E-commerce' },
+  { value: 'sistema', label: 'Sistema ou plataforma web' },
+  { value: 'saas', label: 'Produto digital / SaaS' },
+  { value: 'manutencao', label: 'Manutenção ou melhorias em projeto existente' },
+  { value: 'outro', label: 'Outro (descreva na mensagem)' },
 ]
 
+// Faixas de orçamento com linguagem acolhedora
 const budgetRanges = [
-  'Até R$ 5.000',
-  'R$ 5.000 - R$ 15.000',
-  'R$ 15.000 - R$ 30.000',
-  'R$ 30.000 - R$ 50.000',
-  'Acima de R$ 50.000',
-  'A definir',
+  { value: 'ate-5k', label: 'Até R$ 5.000' },
+  { value: '5k-15k', label: 'R$ 5.000 a R$ 15.000' },
+  { value: '15k-30k', label: 'R$ 15.000 a R$ 30.000' },
+  { value: '30k-50k', label: 'R$ 30.000 a R$ 50.000' },
+  { value: 'acima-50k', label: 'Acima de R$ 50.000' },
+  { value: 'definir', label: 'Preciso de ajuda para estimar' },
 ]
+
+// Placeholders dinâmicos por tipo de projeto (briefing guiado)
+const messagePlaceholders: Record<string, string> = {
+  site: `Descreva sua empresa e o objetivo do site.
+- Qual o público-alvo?
+- Tem referências ou sites que gosta?
+- Existe prazo ou data importante?`,
+
+  landing: `Qual o objetivo da landing page?
+- É para captar leads, vender ou lançar algo?
+- Tem referências visuais?
+- Quando precisa estar no ar?`,
+
+  ecommerce: `Conte sobre seus produtos e mercado.
+- Quantos produtos pretende vender?
+- Já usa alguma plataforma?
+- Qual o prazo desejado?`,
+
+  sistema: `Descreva o problema que o sistema precisa resolver.
+- Quem vai usar?
+- Existe algo similar no mercado?
+- Quais funcionalidades são essenciais?`,
+
+  saas: `Descreva sua ideia de produto.
+- Qual problema ele resolve?
+- Quem é o usuário ideal?
+- Está em fase de validação ou escala?`,
+
+  manutencao: `Conte sobre o projeto atual.
+- O que precisa ser melhorado?
+- Quais problemas está enfrentando?
+- Tem acesso ao código-fonte?`,
+
+  outro: `Descreva seu projeto ou ideia.
+- Qual o objetivo principal?
+- Quem é o público-alvo?
+- Tem prazo ou orçamento definido?`,
+
+  default: `Descreva seu projeto ou necessidade.
+- Qual o objetivo?
+- Quem é o público-alvo?
+- Tem referências ou prazo?`,
+}
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -53,6 +100,11 @@ export function Contact() {
     message: '',
   })
 
+  // Placeholder dinâmico baseado no tipo de projeto selecionado
+  const currentPlaceholder = useMemo(() => {
+    return messagePlaceholders[formData.projectType] || messagePlaceholders.default
+  }, [formData.projectType])
+
   // Carregar dados salvos do localStorage ao montar
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY)
@@ -71,12 +123,20 @@ export function Contact() {
     setErrorMessage('')
 
     try {
+      // Converte o value do projectType para o label antes de enviar
+      const selectedProjectType = projectTypes.find(t => t.value === formData.projectType)
+      const selectedBudget = budgetRanges.find(b => b.value === formData.budget)
+
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          projectType: selectedProjectType?.label || formData.projectType,
+          budget: selectedBudget?.label || formData.budget,
+        }),
       })
 
       const data = await response.json()
@@ -133,13 +193,13 @@ export function Contact() {
               <CheckCircle className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-2xl font-bold text-text mb-4">
-              Mensagem Enviada!
+              Recebemos seu briefing!
             </h3>
             <p className="text-text-muted mb-6">
-              Obrigado pelo contato! Recebemos sua solicitação e retornaremos em até 24 horas úteis.
+              Agora é com a gente. Você receberá uma proposta personalizada em até 24 horas úteis no e-mail informado.
             </p>
             <Button onClick={resetForm} variant="outline">
-              Enviar nova mensagem
+              Enviar outro projeto
             </Button>
           </div>
         </div>
@@ -148,12 +208,12 @@ export function Contact() {
   }
 
   return (
-    <section id="contato" className="py-20 md:py-32 bg-surface-dark" aria-labelledby="solicitar-orcamento-titulo">
+    <section id="contato" className="py-20 md:py-32 bg-surface-dark" aria-labelledby="conte-sobre-seu-projeto-titulo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle 
-          subtitle="Conte-nos sobre seu projeto e receba uma proposta personalizada"
+          subtitle="Responda algumas perguntas e receba uma proposta sob medida. Sem compromisso."
         >
-          Solicitar Orçamento
+          Conte sobre seu projeto
         </SectionTitle>
 
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
@@ -161,11 +221,11 @@ export function Contact() {
           <div className="lg:col-span-2 space-y-8">
             <div>
               <h3 className="text-xl font-semibold text-text mb-4">
-                Vamos construir algo incrível juntos
+                Não sabe exatamente o que precisa? Sem problema.
               </h3>
               <p className="text-text-muted leading-relaxed">
-                Preencha o formulário ao lado com os detalhes do seu projeto. 
-                Quanto mais informações você fornecer, mais precisa será nossa proposta.
+                Este formulário foi feito para guiar você. Responda o que souber e nós cuidamos do resto. 
+                Quanto mais contexto, melhor a proposta.
               </p>
             </div>
 
@@ -176,7 +236,7 @@ export function Contact() {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-text-muted text-sm">E-mail</p>
+                  <p className="text-text-muted text-sm">E-mail direto</p>
                   <a 
                     href="mailto:contato@codigoprimordial.com" 
                     className="text-text hover:text-primary transition-colors"
@@ -188,11 +248,11 @@ export function Contact() {
 
               <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
                 <div className="p-3 bg-secondary/10 rounded-lg">
-                  <Clock className="w-5 h-5 text-secondary" />
+                  <User className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <p className="text-text-muted text-sm">Tempo de resposta</p>
-                  <p className="text-text">Até 24 horas úteis</p>
+                  <p className="text-text-muted text-sm">Atendimento humano</p>
+                  <p className="text-text">Resposta em até 24h úteis. Sem robôs.</p>
                 </div>
               </div>
             </div>
@@ -200,11 +260,11 @@ export function Contact() {
             {/* Social proof */}
             <div className="p-6 bg-surface rounded-xl border border-surface-light">
               <p className="text-text-muted text-sm italic">
-                "Excelente trabalho! O Jackson entregou nosso projeto no prazo 
-                e com qualidade excepcional. Recomendo!"
+                "Consegui explicar minha ideia mesmo sem saber nada de tecnologia. 
+                Em uma semana já tinha a proposta e o cronograma."
               </p>
               <p className="text-primary text-sm mt-3 font-medium">
-                — Cliente Satisfeito
+                — Fundador de startup
               </p>
             </div>
           </div>
@@ -224,7 +284,7 @@ export function Contact() {
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-text text-sm font-medium mb-2">
-                    Nome *
+                    Seu nome *
                   </label>
                   <input
                     type="text"
@@ -235,14 +295,14 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                    placeholder="Seu nome"
+                    placeholder="Como podemos te chamar?"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-text text-sm font-medium mb-2">
-                    E-mail *
+                    E-mail para contato *
                   </label>
                   <input
                     type="email"
@@ -264,7 +324,7 @@ export function Contact() {
                   <label htmlFor="phone" className="block text-text text-sm font-medium mb-2">
                     <span className="flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      Telefone / WhatsApp
+                      WhatsApp (opcional)
                     </span>
                   </label>
                   <input
@@ -283,7 +343,7 @@ export function Contact() {
                 {/* Company */}
                 <div>
                   <label htmlFor="company" className="block text-text text-sm font-medium mb-2">
-                    Empresa
+                    Empresa ou projeto
                   </label>
                   <input
                     type="text"
@@ -293,7 +353,7 @@ export function Contact() {
                     value={formData.company}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                    placeholder="Nome da sua empresa (opcional)"
+                    placeholder="Ex: Minha Startup, Loja do João..."
                   />
                 </div>
               </div>
@@ -302,7 +362,7 @@ export function Contact() {
                 {/* Project Type */}
                 <div>
                   <label htmlFor="projectType" className="block text-text text-sm font-medium mb-2">
-                    Tipo de Projeto *
+                    O que você precisa? *
                   </label>
                   <select
                     id="projectType"
@@ -313,9 +373,9 @@ export function Contact() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <option value="" disabled>Selecione...</option>
+                    <option value="" disabled>Escolha a opção mais próxima</option>
                     {projectTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
+                      <option key={type.value} value={type.value}>{type.label}</option>
                     ))}
                   </select>
                 </div>
@@ -323,7 +383,7 @@ export function Contact() {
                 {/* Budget */}
                 <div>
                   <label htmlFor="budget" className="block text-text text-sm font-medium mb-2">
-                    Orçamento Estimado *
+                    Investimento previsto *
                   </label>
                   <select
                     id="budget"
@@ -334,9 +394,9 @@ export function Contact() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <option value="" disabled>Selecione...</option>
+                    <option value="" disabled>Selecione uma faixa</option>
                     {budgetRanges.map((range) => (
-                      <option key={range} value={range}>{range}</option>
+                      <option key={range.value} value={range.value}>{range.label}</option>
                     ))}
                   </select>
                 </div>
@@ -345,25 +405,28 @@ export function Contact() {
               {/* Message */}
               <div>
                 <label htmlFor="message" className="block text-text text-sm font-medium mb-2">
-                  Mensagem *
+                  Conte mais sobre o projeto *
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   disabled={status === 'loading'}
-                  rows={5}
+                  rows={6}
                   value={formData.message}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-surface border border-surface-light rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder="Descreva seu projeto, objetivos e expectativas..."
+                  placeholder={currentPlaceholder}
                 />
+                <p className="text-text-muted text-xs mt-2">
+                  Não se preocupe em ser técnico. Escreva como se estivesse explicando para um amigo.
+                </p>
               </div>
 
               {/* Submit */}
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <p className="text-text-muted text-sm">
-                  * Campos obrigatórios
+                  * Campos obrigatórios. Suas informações estão seguras.
                 </p>
                 <Button 
                   type="submit" 
@@ -378,7 +441,7 @@ export function Contact() {
                     </>
                   ) : (
                     <>
-                      Enviar Mensagem
+                      Enviar e receber proposta
                       <Send size={18} />
                     </>
                   )}
