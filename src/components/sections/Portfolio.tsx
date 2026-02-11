@@ -1,47 +1,54 @@
-import { ExternalLink, Github } from 'lucide-react'
-import { SectionTitle } from '../common/SectionTitle'
-import { Card } from '../common/Card'
+import { ExternalLink, Github } from "lucide-react";
+import { SectionTitle } from "../common/SectionTitle";
+import { Card } from "../common/Card";
 
 const projects = [
   {
-    title: 'Landing Page Responsiva',
-    client: '7 Days of Code - Alura',
-    description: 'Landing page moderna desenvolvida em HTML, CSS e JavaScript puro. Design responsivo com foco em performance e experiência do usuário.',
-    image: 'https://github.com/jacksonadh/Alura7DaysOfCodeHtml/raw/master/img/img%20para%20readme/Desktop.png',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsivo'],
-    metrics: ['Performance 95+', 'Mobile-first', 'Carregamento < 2s'],
-    liveUrl: 'https://jacksonadh.github.io/Alura7DaysOfCodeHtml/',
-    repoUrl: 'https://github.com/jacksonadh/Alura7DaysOfCodeHtml',
+    title: "Landing Page Responsiva",
+    client: "7 Days of Code - Alura",
+    description:
+      "Landing page moderna desenvolvida em HTML, CSS e JavaScript puro. Design responsivo com foco em performance e experiência do usuário.",
+    image:
+      "https://github.com/jacksonadh/Alura7DaysOfCodeHtml/raw/master/img/img%20para%20readme/Desktop.png",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsivo"],
+    metrics: ["Performance 95+", "Mobile-first", "Carregamento < 2s"],
+    liveUrl: "https://jacksonadh.github.io/Alura7DaysOfCodeHtml/",
+    repoUrl: "https://github.com/jacksonadh/Alura7DaysOfCodeHtml",
   },
   {
-    title: 'Dashboard Administrativo',
-    client: 'Projeto Interno',
-    description: 'Painel administrativo desenvolvido em React com TypeScript. Interface moderna com gráficos interativos, gestão de dados e autenticação.',
-    image: null,
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'API REST'],
-    metrics: ['Interface intuitiva', 'Real-time updates', 'Multi-usuário'],
-    liveUrl: null,
+    title: "Rota Bahia Turismo",
+    client: "Rota Bahia Turismo",
+    description:
+      "Site institucional para a Rota Bahia, agência de turismo e receptivo em Salvador, Bahia.",
+    image:
+      "https://github.com/jacksonadh/projects-image/raw/main/rota-bahia.png",
+    tags: ["Next.js 16+", "TypeScript", "Tailwind CSS 4"],
+    metrics: ["Interface intuitiva", "SEO otimizado"],
+    liveUrl: "https://rota-bahia-turismo.vercel.app/",
     repoUrl: null,
   },
   {
-    title: 'E-commerce VTEX IO',
-    client: 'Cliente Confidencial',
-    description: 'Loja virtual completa na plataforma VTEX IO. Customização de checkout, integrações com meios de pagamento e otimização de conversão.',
-    image: null,
-    tags: ['VTEX IO', 'React', 'GraphQL', 'Node.js'],
-    metrics: ['+30% conversão', 'SEO otimizado', 'Checkout rápido'],
-    liveUrl: null,
+    title: "Elev'up Consultoria - Site Institucional",
+    client: "Elev'up Consultoria",
+    description:
+      "Site institucional moderno para a Elev'up Consultoria, especializada em Gestão Financeira e Recursos Humanos para pequenas e médias empresas.",
+    image: "https://github.com/jacksonadh/projects-image/raw/main/elevup.png",
+    tags: ["Next.js 16+", "TypeScript", "Tailwind CSS 4"],
+    metrics: ["+30% conversão", "SEO otimizado", "Real-time updates"],
+    liveUrl: "https://elevup-consultoria.vercel.app/",
     repoUrl: null,
   },
-]
+];
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="py-20 md:py-32 bg-background" aria-labelledby="portfolio-titulo">
+    <section
+      id="portfolio"
+      className="py-20 md:py-32 bg-background"
+      aria-labelledby="portfolio-titulo"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle 
-          subtitle="Cases de sucesso que demonstram nossa expertise em desenvolvimento web"
-        >
+        <SectionTitle subtitle="Cases de sucesso que demonstram nossa expertise em desenvolvimento web">
           Portfólio
         </SectionTitle>
 
@@ -58,7 +65,9 @@ export function Portfolio() {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10">
-                    <span className="text-4xl font-mono text-primary/50">&lt;/&gt;</span>
+                    <span className="text-4xl font-mono text-primary/50">
+                      &lt;/&gt;
+                    </span>
                   </div>
                 )}
                 <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
@@ -128,8 +137,8 @@ export function Portfolio() {
           <p className="text-text-muted mb-4">
             Quer ver mais projetos ou discutir sua ideia?
           </p>
-          <a 
-            href="#contato" 
+          <a
+            href="#contato"
             className="inline-flex items-center gap-2 text-primary hover:text-primary-400 font-semibold transition-colors"
           >
             Vamos conversar
@@ -138,5 +147,5 @@ export function Portfolio() {
         </div>
       </div>
     </section>
-  )
+  );
 }
